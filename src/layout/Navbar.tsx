@@ -13,7 +13,7 @@ import logoImage from "@/logo.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/types-of-ml", label: "Types of ML" },
+  // { href: "/types-of-ml", label: "Types of ML" },
   { href: "/supervised", label: "Supervised" },
   { href: "/unsupervised", label: "Unsupervised" },
   { href: "/playground", label: "Playground" },

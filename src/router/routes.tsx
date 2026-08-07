@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { path: "/", element: <HomePage /> },
-      { path: "/types-of-ml", element: <TypesOfMlPage /> },
+      // { path: "/types-of-ml", element: <TypesOfMlPage /> },
       { path: "/supervised", element: <SupervisedPage /> },
       { path: "/unsupervised", element: <UnsupervisedPage /> },
       { path: "/playground", element: <PlaygroundPage /> },

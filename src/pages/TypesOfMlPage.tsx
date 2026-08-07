@@ -6,21 +6,29 @@ import MLTypeDetailPanel from "@/components/types-of-ml/MLTypeDetailPanel";
 import ComparisonTable from "@/components/types-of-ml/ComparisonTable";
 import type { MLTypeId } from "@/data/mlTypes";
 
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { mlTypes } from "@/data/mlTypes";
+import { MagicCard } from "@/components/ui/magic-card";
+
+const pageLinks: Record<string, string> = {
+  supervised: "/supervised",
+  unsupervised: "/unsupervised",
+  reinforcement: "/",
+};
+
+const emojis: Record<string, string> = {
+  supervised: "🎯",
+  unsupervised: "🔍",
+  reinforcement: "🎮",
+};
+
 export default function TypesOfMlPage() {
   const [selected, setSelected] = useState<MLTypeId | null>(null);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
-      {/* Header */}
-      <ScrollReveal>
-        <SectionHeading
-          tag="ML Fundamentals"
-          title="Types of Machine Learning"
-          subtitle="Machine Learning is broadly categorised into three paradigms. Click any vertex of the triangle to explore each type in depth."
-          accentColor="#3b82f6"
-          align="center"
-        />
-      </ScrollReveal>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  space-y-20">
 
       {/* Triangle + Detail Panel */}
       <ScrollReveal delay={0.1}>
@@ -54,7 +62,7 @@ export default function TypesOfMlPage() {
       </ScrollReveal>
 
       {/* Quick Summary Cards */}
-      <ScrollReveal>
+      {/* <ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
             {
@@ -91,7 +99,74 @@ export default function TypesOfMlPage() {
             </div>
           ))}
         </div>
-      </ScrollReveal>
+      </ScrollReveal> */}
+       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {mlTypes.map((type, i) => (
+          <motion.div
+            key={type.id}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.12 }}
+            whileHover={{ y: -6 }}
+          >
+            <Link to={pageLinks[type.id] ?? "/"}>
+              <MagicCard className="h-full group cursor-pointer flex flex-col" gradientColor={`${type.color}15`}>
+                {/* Top accent bar */}
+                <div
+                  className="h-1 w-full"
+                  style={{ background: type.color }}
+                />
+                <div className="p-6 flex flex-col gap-4 h-full flex-1">
+                  {/* Icon */}
+                  <div
+                    className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: `${type.color}20` }}
+                  >
+                    {emojis[type.id]}
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3
+                      className="font-heading text-xl font-bold mb-2"
+                      style={{ color: type.color }}
+                    >
+                      {type.label}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                      {type.description}
+                    </p>
+                    <ul className="flex flex-col gap-1.5">
+                      {type.bullets.map((b) => (
+                        <li
+                          key={b}
+                          className="flex items-center gap-2 text-xs text-muted-foreground"
+                        >
+                          <span
+                            className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                            style={{ background: type.color }}
+                          />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* CTA */}
+                  <div
+                    className="flex items-center gap-1 text-sm font-semibold mt-2 transition-gap group-hover:gap-2"
+                    style={{ color: type.color }}
+                  >
+                    Learn more
+                    <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </MagicCard>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 }
