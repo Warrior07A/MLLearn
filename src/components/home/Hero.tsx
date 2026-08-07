@@ -68,7 +68,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <Link to="/types-of-ml">
+            <Link to="/playground">
               <Button
                 size="lg"
                 className="font-heading font-semibold px-8 h-12 text-base bg-green-500 hover:bg-green-600 text-white shadow-lg shadow-green-500/25 transition-all hover:shadow-green-500/40 hover:scale-105"

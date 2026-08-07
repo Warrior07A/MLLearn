@@ -7,7 +7,7 @@ import { MagicCard } from "@/components/ui/magic-card";
 const pageLinks: Record<string, string> = {
   supervised: "/supervised",
   unsupervised: "/unsupervised",
-  reinforcement: "/types-of-ml",
+  reinforcement: "/",
 };
 
 const emojis: Record<string, string> = {

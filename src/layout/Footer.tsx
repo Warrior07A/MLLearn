@@ -22,7 +22,7 @@ export default function Footer() {
           <div>
           <nav className="flex flex-wrap justify-end  items-end gap-x-6 gap-y-2 text-sm text-muted-foreground">
             <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
-            <Link to="/types-of-ml" className="hover:text-foreground transition-colors">Types of ML</Link>
+            {/* <Link to="/types-of-ml" className="hover:text-foreground transition-colors">Types of ML</Link> */}
             <Link to="/supervised" className="hover:text-foreground transition-colors">Supervised</Link>
             <Link to="/unsupervised" className="hover:text-foreground transition-colors">Unsupervised</Link>
             <Link to="/playground" className="hover:text-foreground transition-colors">Playground</Link>
